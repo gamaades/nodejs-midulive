@@ -1,0 +1,469 @@
+¿Qué es Node.js?
+
+Node.js es un entorno de ejecución para JavaScript. En pocas palabras, es un entorno donde se puede ejecutar JavaScript fuera del navegador, lo que permite utilizar JavaScript en el backend, en nuestra terminal, e incluso en dispositivos. Node.js es de código abierto, multiplataforma y asíncrono, con entrada y salida de datos (I/O) y una arquitectura orientada a eventos.
+
+Node.js utiliza V8, que es el motor de JavaScript utilizado por el navegador Chrome. Este motor es responsable de la ejecución rápida y eficiente de JavaScript.
+
+Node.js está orientado a eventos, lo que significa que su modelo de programación está basado en un bucle de eventos que maneja las solicitudes entrantes. En lugar de esperar a que las tareas se completen (bloqueo), Node.js ejecuta otras tareas mientras espera respuestas de tareas previas, utilizando un solo hilo. Esto hace que Node.js sea monohilo. Sin embargo, Node.js maneja operaciones de manera asíncrona, permitiendo realizar múltiples tareas al mismo tiempo sin bloquear el hilo principal.
+
+
+¿Por qué aprender Node.js?
+
+6 razones para aprender Node.js:
+1. Demanda del mercado: Empresas líderes como Netflix, la NASA, Trello, PayPal, LinkedIn, Walmart, Uber, y Twitter, entre otras, utilizan Node.js.
+2. Conocimientos reutilizables: Permite aprovechar todos los conocimientos de JavaScript en el backend, lo que facilita el aprendizaje y la integración de tecnologías.
+3. Versatilidad: Se pueden crear aplicaciones web, APIs, servicios, herramientas de scraping y utilidades diversas.
+4. Comunidad y ecosistema: Cuenta con una comunidad inmensa y un ecosistema de paquetes y herramientas aún más grande, lo que facilita el desarrollo y la resolución de problemas.
+5. Rendimiento y escalabilidad: Node.js es rápido, escalable, fácil de desplegar y muy económico (incluso gratuito) para su implementación.
+6. Desarrollo eficiente: Su naturaleza asíncrona y orientada a eventos permite manejar múltiples tareas de manera eficiente sin bloquear el sistema.
+
+
+Historia de Node.js
+
+Node.js se creó en 2009 debido a las limitaciones que presentaba el servidor Apache HTTP Server, el cual no era capaz de manejar muchas conexiones de forma concurrente de manera eficiente. Para solucionar este problema, Ryan Dahl desarrolló Node.js, permitiendo manejar múltiples conexiones de manera asíncrona y eficiente.
+
+En 2015, Node.js experimentó un desarrollo significativo al unirse con el proyecto io.js. Esta unión permitió la consolidación de sus características y mejoras, ayudando a retomar y fortalecer su camino en la comunidad de desarrollo. A partir de este año, Node.js pasó a ser parte de la OpenJS Foundation, lo que facilitó su crecimiento y apoyo continuo dentro del ecosistema de software de código abierto.
+
+
+globalThis
+
+globalThis es la variable global accesible en toda nuestra aplicación, ya sea en Node.js, en el navegador o en cualquier otro entorno. Al hacer un console.log(globalThis), se pueden ver todas sus propiedades, opciones y métodos. Se puede acceder a globalThis sin importar el entorno en el que estemos trabajando.
+
+- En el navegador, globalThis apunta a window, que es la variable global en ese contexto.
+- En Node.js, globalThis apunta a global, que es la variable global en ese entorno.
+Es recomendable usar globalThis ya que es la forma correcta y estándar de referirse a la variable global en cualquier entorno, garantizando así la compatibilidad y coherencia del código.
+
+
+Patrón de Diseño Módulo
+
+En Node.js, no se recomienda tener todo nuestro código en un solo archivo. Para organizar y gestionar el código de manera eficiente, utilizamos el patrón de diseño módulo. Este patrón nos permite separar el código en diferentes archivos, los cuales podemos importar y exportar, facilitando así la reutilización y el mantenimiento del código sin redundancias.
+
+El sistema clásico de módulos en Node.js es CommonJS. A continuación se muestra cómo se utiliza:
+
+Ejemplo de uso de CommonJS
+Archivo suma.js
+
+function sum(a, b) {
+  return a + b;
+}
+
+// Exportar el módulo usando CommonJS
+module.exports = { sum };
+
+En este archivo, definimos una función sum que suma dos números y la exportamos usando module.exports, lo que nos permite utilizar esta función en otros archivos.
+
+Archivo index.js
+
+// Importar el módulo usando CommonJS
+const { sum } = require('./suma');
+
+console.info(sum(120, 230)); // Salida: 350
+
+En este archivo, importamos la función sum del archivo suma.js utilizando require y luego la usamos para sumar dos números.
+
+Ventajas del Patrón de Diseño Módulo
+
+1. Organización: Mantiene el código organizado y modularizado.
+2. Reutilización: Facilita la reutilización de código en diferentes partes de la aplicación.
+3. Mantenimiento: Hace que el código sea más fácil de mantener y entender.
+4. Evita la Redundancia: Reduce la duplicación de código al reutilizar módulos en lugar de copiar y pegar.
+Utilizar el patrón de diseño módulo en Node.js nos permite escribir código más limpio, modular y fácil de mantener, asegurando así una mejor estructura y organización en nuestras aplicaciones.
+
+
+Uso de ES Modules en Node.js
+
+Extensiones de Archivos
+- .js: Por defecto utiliza CommonJS.
+- .mjs: Para utilizar ES Modules.
+- .cjs: Para utilizar CommonJS.
+
+Ejemplo de Uso de ES Modules
+Archivo index.mjs
+
+import { sum, sub, mult } from './sum.mjs';
+
+console.info(sum(1, 2));   // Salida: 3
+console.info(sub(1, 2));   // Salida: -1
+console.info(mult(1, 2));  // Salida: 2
+
+En este archivo, utilizamos la sintaxis de ES Modules (import) para importar las funciones sum, sub y mult desde el archivo sum.mjs.
+
+Archivo sum.mjs
+export function sum(a, b) {
+  return a + b;
+}
+
+export function sub(a, b) {
+  return a - b;
+}
+
+export function mult(a, b) {
+  return a * b;
+}
+
+En este archivo, definimos y exportamos las funciones sum, sub y mult utilizando la sintaxis de ES Modules (export).
+
+Ventajas de ES Modules
+- Múltiples Exportaciones: Permite exportar múltiples funciones, objetos o variables desde un solo archivo.
+- Moderno y Estándar: ES Modules es el sistema de módulos moderno y recomendado, y forma parte de la especificación oficial de JavaScript.
+- Compatibilidad con Node.js: Afortunadamente, Node.js ahora soporta ES Modules de forma nativa, permitiendo su uso en aplicaciones Node.js.
+
+Utilizar ES Modules en Node.js proporciona una forma más estandarizada y moderna de manejar módulos, mejorando la organización y la reutilización del código.
+
+
+Modulos nativos de Node.js
+Los buenos de Node.js al ser un entorno de ejecución es que nos da una biblioteca enorme de módulos nativos que nos va a dar acceso al sistema de archivos, al sistema operativo, a internet, a cualquier cosa.
+1. el primer sistema de modulo nativo para realizar pruebas es uno que da información del sistema operativo.
+
+// Creamos una constante y requerimos el módulo nativo os con el prefijo "node:".
+// A partir de la versión 16 de Node.js, es recomendable usar "node:os" para mayor claridad y compatibilidad.
+const os = require("node:os");
+
+console.info('Información del sistema operativo:');
+console.info('----------------------------------');
+
+console.info('Plataforma del sistema operativo:', os.platform());
+console.info('Versión del sistema operativo:', os.release());
+console.info('Arquitectura del sistema operativo:', os.arch());
+console.info("CPU's:", os.cpus()); // Nos permite ver la información de las CPU y escalar procesos en Node.js.
+console.info('Memoria libre (MB):', (os.freemem() / 1024 / 1024).toFixed(2));
+console.info('Memoria total (MB):', (os.totalmem() / 1024 / 1024).toFixed(2));
+console.info('Tiempo de actividad (horas):', (os.uptime() / 3600).toFixed(2));
+
+2. // El módulo 'fs' (file system) en Node.js es uno de los más importantes y utilizados.
+// Permite interactuar con el sistema de archivos para leer, escribir, actualizar y eliminar archivos.
+// 'fs' significa file system (sistema de archivos).
+
+// El módulo 'fs' ofrece muchos métodos para manejar archivos.
+// Una característica clave de Node.js es la capacidad de realizar operaciones de manera asíncrona vs. sincrona.
+// Node.js es monohilo y está basado en eventos, lo que permite manejar muchas operaciones simultáneamente sin bloquear el proceso principal.
+
+// A continuación, mostramos un ejemplo de cómo realizar una operación de forma síncrona usando el módulo 'fs'.
+// La operación síncrona bloqueará el hilo principal hasta que se complete.
+
+const fs = require("node:fs");
+
+// Obtener información sobre el archivo 'archivo.txt' de forma síncrona
+const stats = fs.statSync("./archivo.txt");
+
+console.info(
+  "¿Es un archivo?",
+  stats.isFile(), // true si es un archivo
+  "¿Es un directorio?",
+  stats.isDirectory(), // true si es un directorio
+  "¿Es un enlace simbólico?",
+  stats.isSymbolicLink(), // true si es un enlace simbólico
+  "Tamaño en bytes:",
+  stats.size // Tamaño del archivo en bytes
+);
+
+// Resultado esperado:
+// true false false 10
+
+3. El Módulo 'fs' (File System) en Node.js
+El módulo 'fs' (file system) en Node.js es uno de los más importantes y utilizados. Permite interactuar con el sistema de archivos para leer, escribir, actualizar y eliminar archivos. 'fs' significa file system (sistema de archivos).
+
+Características Clave:
+- Métodos: El módulo 'fs' ofrece muchos métodos para manejar archivos.
+- Operaciones Asíncronas vs. Síncronas: Node.js permite realizar operaciones tanto de manera asíncrona como sincrona.
+    - Asíncrona: No bloquea el hilo principal, permitiendo que otras operaciones se realicen simultáneamente.
+    - Síncrona: Bloquea el hilo principal hasta que la operación se complete.
+Node.js y su Arquitectura
+Node.js es monohilo y está basado en eventos, lo que permite manejar muchas operaciones simultáneamente sin bloquear el proceso principal.
+
+Ejemplo de Operación Síncrona
+A continuación, mostramos un ejemplo de cómo realizar una operación de forma síncrona usando el módulo 'fs'. La operación síncrona bloqueará el hilo principal hasta que se complete.
+
+const fs = require("node:fs");
+
+// Obtener información sobre el archivo 'archivo.txt' de forma síncrona
+const stats = fs.statSync("./archivo.txt");
+
+console.info(
+  "¿Es un archivo?", stats.isFile(), // true si es un archivo
+  "¿Es un directorio?", stats.isDirectory(), // true si es un directorio
+  "¿Es un enlace simbólico?", stats.isSymbolicLink(), // true si es un enlace simbólico
+  "Tamaño en bytes:", stats.size // Tamaño del archivo en bytes
+);
+
+// Resultado esperado:
+// true false false 10
+
+- stats.isFile(): Devuelve true si es un archivo.
+- stats.isDirectory(): Devuelve true si es un directorio.
+- stats.isSymbolicLink(): Devuelve true si es un enlace simbólico.
+- stats.size: Devuelve el tamaño del archivo en bytes.
+Este ejemplo demuestra cómo realizar una operación de lectura de archivos de forma síncrona, obteniendo detalles importantes sobre el archivo especificado.
+
+
+Leer un Fichero con Callback
+Módulo 'fs' (File System) en Node.js
+El módulo 'fs' (file system) en Node.js permite interactuar con el sistema de archivos para leer, escribir, actualizar y eliminar archivos.
+
+Importación del Módulo 'fs'
+Para importar el módulo 'fs' de Node.js, utilizamos el siguiente código:
+
+const fs = require("node:fs");
+
+Lectura de Archivos de Manera Síncrona
+La lectura síncrona de archivos bloquea el hilo principal hasta que la operación se completa. A continuación, se muestra un ejemplo de cómo realizar esta operación:
+
+console.log("Leyendo el primer archivo");
+const text = fs.readFileSync("./archivo.txt", "utf-8");
+console.log(text);
+
+console.log("Leyendo el segundo archivo");
+const secondText = fs.readFileSync("./archivo2.txt", "utf-8");
+console.log(secondText);
+- fs.readFileSync devuelve el contenido del archivo como un buffer por defecto.
+- Especificamos 'utf-8' como la codificación para obtener una cadena de texto legible, evitando problemas con acentos y caracteres especiales.
+
+Lectura de Archivos de Manera Asíncrona
+La lectura asíncrona de archivos no bloquea el hilo principal. En su lugar, acepta un callback que se ejecuta cuando la lectura del archivo se completa. A continuación, se muestra un ejemplo de cómo realizar esta operación:
+
+console.log("Leyendo el tercer archivo de manera asíncrona");
+fs.readFile("./archivo.txt", "utf-8", (err, text) => {
+  if (err) {
+    console.error("Error leyendo el archivo:", err);
+    return;
+  }
+  console.log("Primer texto:", text);
+});
+
+console.log("---> Hacer cosas mientras lee el archivo");
+
+console.log("Leyendo el cuarto archivo de manera asíncrona");
+fs.readFile("./archivo2.txt", "utf-8", (err, text) => {
+  if (err) {
+    console.error("Error leyendo el archivo:", err);
+    return;
+  }
+  console.log("Segundo texto:", text);
+});
+
+- fs.readFile acepta un callback que se ejecuta cuando la lectura del archivo se completa.
+- Un callback es una función que se ejecuta cuando se completa una tarea asíncrona. En este caso, se usa para manejar la lectura de archivos de manera no bloqueante.
+
+Resumen
+- Síncrono vs. Asíncrono: La operación síncrona bloqueará el hilo principal hasta que se complete, mientras que la operación asíncrona permite continuar ejecutando otras tareas mientras se completa la operación de lectura.
+- Callback: Es una función que se ejecuta cuando se completa una tarea asíncrona, proporcionando una manera de manejar operaciones de I/O de manera no bloqueante.
+
+
+Leer un Fichero con Promesas
+Importación del Módulo fs/promises
+
+const fs = require('node:fs/promises');
+Utiliza require('node:fs/promises') para importar el módulo fs con soporte para promesas, lo que facilita el manejo de operaciones asíncronas.
+
+Lectura de Archivos de Manera Asíncrona con Promesas
+
+console.log('Leyendo el primer archivo de manera asincrona con promesas');
+fs.readFile('./archivo.txt', 'utf-8')
+  .then((text) => {
+    console.log('Primer texto:', text);
+  })
+  .catch((err) => {
+    console.error('Error leyendo el primer archivo:', err);
+  });
+
+- fs.readFile devuelve una promesa.
+- then se utiliza para manejar el resultado exitoso de la promesa.
+- catch se utiliza para manejar cualquier error que ocurra durante la lectura del archivo.
+
+Realizando Otras Tareas Mientras Se Lee el Archivo
+
+console.log('---> Realizando otras tareas mientras se lee el archivo asincrónicamente');
+Este mensaje muestra que otras tareas pueden ejecutarse mientras se espera que las operaciones de lectura de archivos se completen.
+
+Lectura del Segundo Archivo de Manera Asíncrona con Promesas
+
+
+console.log('Leyendo el segundo archivo de manera asincrona con promesas');
+fs.readFile('./archivo2.txt', 'utf-8')
+  .then((text) => {
+    console.log('Segundo texto:', text);
+  })
+  .catch((err) => {
+    console.error('Error leyendo el segundo archivo:', err);
+  });
+De manera similar a la lectura del primer archivo, se utiliza fs.readFile con then y catch para manejar el resultado y posibles errores.
+
+Explicación de Promesas
+
+/** 
+ * Utilizar promesas permite manejar el código asíncrono de manera más legible y manejable en comparación con callbacks.
+ * Mientras se lee el primer archivo, otras tareas pueden continuar ejecutándose.
+ * Al ser promesas, se garantiza que el código continuará ejecutándose mientras las operaciones de lectura de archivos se completan.
+ * Muchos módulos de Node.js ahora ofrecen una versión basada en promesas (como 'fs/promises'), facilitando la transición desde el uso clásico de callbacks.
+ */
+
+
+NPM (Node Package Manager)
+NPM es el administrador de paquetes para Node.js, y es el registro de paquetes más grande del mundo. Fue lanzado poco después de Node.js y desempeña un papel crucial en la gestión de dependencias y paquetes en proyectos Node.js.
+
+¿Qué es NPM?
+1. Registro de Paquetes:
+- NPM es un registro de paquetes de código abierto que cualquiera puede utilizar de forma gratuita.
+- Es una vasta colección de paquetes y dependencias que se pueden instalar en tu proyecto.
+
+2. Línea de Comandos:
+- Además del registro de paquetes, NPM proporciona una interfaz de línea de comandos para gestionar estos paquetes.
+- Es importante no confundir los paquetes y dependencias con la línea de comandos, ya que existen alternativas como Yarn y PNPM que también pueden gestionar paquetes y dependencias.
+
+Inicialización de un Proyecto Node.js
+Para inicializar un proyecto de Node.js, se utiliza el siguiente comando:
+
+1. npm init
+Este comando ejecuta una utilidad que crea un archivo package.json, que incluye:
+
+- Descripción del proyecto.
+- Dependencias.
+- Scripts.
+- Descripción.
+- Punto de entrada (entry point), que es crucial ya que define el punto de inicio del proyecto.
+- Comandos de prueba (test command).
+- Repositorio Git.
+- Palabras clave (keywords).
+- Autor.
+- Licencia.
+
+2. Para crear un package.json con valores por defecto, se puede usar:
+- npm init -y
+
+Scripts en NPM
+Los scripts en NPM son comandos que se pueden definir en el archivo package.json para realizar varias tareas, como:
+- Levantar el proyecto.
+- Ejecutar pruebas.
+- Compilar código.
+- Entre otros.
+
+Un ejemplo de una sección de scripts en package.json podría ser:
+
+"scripts": {
+  "start": "node index.js",
+  "test": "jest"
+}
+
+Estos scripts se pueden ejecutar usando:
+
+npm run start
+npm run test
+
+Estos apuntes ofrecen una visión clara y concisa de NPM, explicando tanto su función como registro de paquetes y como herramienta de línea de comandos, así como los pasos para inicializar un proyecto y definir scripts.
+
+Semantic versioning
+
+x.y.z representa una versión en el formato de Semantic Versioning.
+
+- x (Mayor): Cuando se incrementa x, indica que se ha roto la compatibilidad hacia atrás. Esto significa que los cambios en esta versión podrían afectar la funcionalidad existente y requerir actualizaciones en el código que utiliza la biblioteca o el software.
+- y (Menor): Cuando se incrementa y, se añaden nuevas funcionalidades sin romper la compatibilidad con versiones anteriores. Estas actualizaciones no deberían afectar el código existente.
+- z (Parche): Cuando se incrementa z, se corrigen bugs o se realizan mejoras menores sin afectar la compatibilidad. Estas actualizaciones son para resolver problemas específicos sin introducir cambios significativos.
+
+Es importante señalar que TypeScript no sigue estrictamente la Semantic Versioning, ya que su enfoque es diferente. Aunque TypeScript también utiliza números de versión, su objetivo principal es mejorar la experiencia de desarrollo y la calidad del código, en lugar de seguir rigurosamente las reglas de Semantic Versioning.
+
+Node Modules
+Cuando instalamos una dependencia, como en el caso de picocolors, se actualiza el archivo package.json y se crea una carpeta llamada “node_modules” en nuestro proyecto. Dentro de esta carpeta, encontraremos los archivos correspondientes a la biblioteca picocolors. Es importante tener en cuenta que al instalar React u otras dependencias, estas también pueden tener sus propias dependencias.
+Para desinstalar dependencias, utilizamos el siguiente comando:
+npm uninstall react
+Esto eliminará los paquetes y actualizará el archivo package.json, eliminando la dependencia de React.
+Cuando se trabaja con dependencia en Node.js hay que diferenciar dos tipos de dependencias:
+1. Las dependencias de produccion, que quiere decir que nuestra aplicación las necesita para funcionar. Ejemplo: picocolors, esta instalado en nuestro proyecto y necesita dicha dependencia para funcionar. 
+Hay otras dependencias que son igual de importantes que se pueden instalar pero que no son de producción.
+2. Las dependencias de desarrollo.
+
+Instalar y configurar EsLint. esto es un proceso automatizado que ocurre automaticamente y que nos va a indicar los errores que tenemos incluso nos va a formatear el codigo para simplificarnos un montón del desarrollo.
+npm i standard --> estandar es un estilo de código para JavaScript que es sin punto y coma ";", el semistandard tiene punto y coma";". Lo que tiene es que va a lintar el código, busca errores, indica si hay separaciones que no deberian estar, entre otras.
+npm i semistandard -D
+Despues de intalar, y si miramos el package json nos habra separado por un lado las dependencias de producción normales con las de desarrollo.
+¿Por qué separar las dependencias de desarrollo con las de producción?
+cuando uno quiere desplegar un servicio, al instalar standard o semistandard no aporta nada al servicio ya que no lo necesita para funcionar ya que no pinta el código cuando se esta utilizando en el servidor, por lo tanto no tiene sentido instalarlo. Siempre hay que evitar instalar lo que no tiene sentido instalar.
+
+
+Configuración de EsLint
+Configurar ESLint en Visual Studio Code (VSC) para el lenguaje de JavaScript es un proceso sencillo. Aquí tienes una guía paso a paso para hacerlo:
+
+Instala ESLint globalmente:
+Abre una terminal y ejecuta el siguiente comando para instalar ESLint globalmente:
+npm install -g eslint
+
+Configura un proyecto con npm:
+Si no tienes un proyecto de npm, inicializa uno en tu directorio de proyecto:
+npm init -y
+
+Instala ESLint localmente en tu proyecto:
+Instala ESLint como una dependencia de desarrollo en tu proyecto:
+npm install eslint --save-dev
+
+Configura ESLint:
+Inicializa una configuración básica de ESLint en tu proyecto. Esto creará un archivo .eslintrc.json en tu directorio de proyecto:
+npx eslint --init
+
+Durante la configuración, ESLint te hará algunas preguntas para personalizar la configuración según tus necesidades (por ejemplo, si estás usando ECMAScript 6, si usas módulos de importación/exportación, etc.).
+
+Instala la extensión de ESLint en Visual Studio Code:
+
+- Abre Visual Studio Code.
+- Ve a la vista de extensiones (puedes hacer clic en el icono de extensiones en la barra lateral izquierda o presionar Ctrl+Shift+X).
+- Busca "ESLint" en el marketplace de extensiones y haz clic en "Install" en la extensión desarrollada por Dirk Baeumer.
+
+Configura Visual Studio Code para usar ESLint:
+Después de instalar la extensión, es posible que necesites configurar VSC para asegurarte de que ESLint se ejecute automáticamente cuando edites archivos JavaScript.
+
+- Abre el archivo de configuración de usuario o de área de trabajo de VSC (settings.json). Puedes acceder a este archivo a través de File > Preferences > Settings, luego haz clic en el icono de página con un lápiz en la esquina superior derecha para abrir la configuración JSON.
+- Añade o asegúrate de que las siguientes configuraciones están presentes:
+
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
+
+Ejecuta ESLint en tu proyecto:
+Puedes ejecutar ESLint en tus archivos de proyecto usando el siguiente comando:
+
+npx eslint .
+
+Ahora, cada vez que edites un archivo JavaScript en tu proyecto, ESLint verificará tu código y te mostrará advertencias o errores en el editor de VSC.
+
+Si necesitas ajustes adicionales o tienes reglas específicas que deseas aplicar, puedes modificar el archivo .eslintrc.json para que se adapte a tus necesidades.
+
+HTTP
+Unos de los modulos mas importantes es el del servidor
+
+Explicación de cada sección:
+1. Importación del módulo HTTP:
+
+const http = require('node:http');
+Este módulo nativo de Node.js proporciona la funcionalidad necesaria para crear y manejar servidores HTTP.
+
+2. Creación del servidor:
+
+const server = http.createServer((req, res) => {
+  console.log('Request received');
+  res.end('Hola mundo!');
+});
+
+- http.createServer crea un nuevo servidor HTTP.
+- El callback (req, res) se ejecuta cada vez que el servidor recibe una solicitud.
+- req representa la solicitud entrante.
+- res representa la respuesta que se enviará de vuelta al cliente.
+- console.log('Request received'); imprime un mensaje en la consola cuando se recibe una solicitud.
+- res.end('Hola mundo!'); finaliza la respuesta enviando 'Hola mundo!' al cliente.
+
+3. Inicio del servidor y asignación de puerto:
+
+server.listen(0, () => {
+  console.log(`Server listening on port http://localhost:${server.address().port}`);
+});
+
+- server.listen(0) hace que el servidor escuche en un puerto asignado automáticamente por el sistema.
+- El callback dentro de listen se ejecuta una vez que el servidor comienza a escuchar.
+- console.log imprime un mensaje en la consola con la URL del servidor y el puerto asignado.
+
+Este código crea un servidor HTTP simple que responde con "Hola mundo!" a cualquier solicitud entrante y muestra en la consola el puerto en el que está escuchando.
