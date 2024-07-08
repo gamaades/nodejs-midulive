@@ -1,0 +1,2 @@
+biblioteca dotenv es una de las blibliotecas más utilizadas para variables de entorno 
+- los callback son funciones que se ejecutan despues de que pase algo. normalmente cuando son cosas asíncronas, en este caso una vez que recibe una peticioón se ejecutara esta funcioón
