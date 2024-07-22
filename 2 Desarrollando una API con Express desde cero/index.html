@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top" />
+  </head>
+  <body>
+    <script>
+
+      var formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdaK06zRLHkUzXMsq4e_w00-3gOFes75tpNHk9OhJtd1wlFUQ/viewform?usp=pp_url&entry.1283905560=";
+
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          showPosition(null);
+        }
+      }
+
+      function showPosition(position) {
+        var loc = position ? position.coords.latitude:
+        window.location.href = formURL + loc;
+      }
+
+      getLocation();
+    </script>
+  </body>
+</html>

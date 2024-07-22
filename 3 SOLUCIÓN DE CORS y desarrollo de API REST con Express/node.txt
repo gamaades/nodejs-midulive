@@ -1,0 +1,150 @@
+1. Inicializar el proyecto:
+Ejecutamos el siguiente comando para crear un archivo package.json con la configuración predeterminada:
+
+npm init -y
+
+2. Instalar Express:
+Usamos este comando para instalar el framework Express, asegurándonos de que se instale una versión exacta sin el símbolo ^:
+
+npm install express -E
+
+3. Instalar Semistandard como dependencia de desarrollo:
+Ejecutamos este comando para instalar Semistandard, una herramienta de linting, como una dependencia de desarrollo:
+
+npm install semistandard -D
+
+4. Evitar el símbolo caret ^:
+El símbolo caret ^ permite que las dependencias se actualicen a versiones menores más recientes. Para evitar esto y asegurar que se instale exactamente la versión especificada, usamos la opción -E durante la instalación:
+
+npm install express -E
+
+5. Levantar el servidor con Node.js:
+Utilizamos el siguiente comando para iniciar nuestro servidor con Node.js, con la opción --watch para reiniciar automáticamente el servidor al detectar cambios en el archivo app.js:
+
+node --watch .\app.js
+
+
+REST API
+REST (Representational State Transfer) es una arquitectura de software diseñada para sistemas de comunicación en redes, especialmente aplicaciones web. Fue introducida en el año 2000 por Roy Fielding.
+Esta arquitectura se utiliza ampliamente para la construcción de APIs, dando origen a lo que conocemos como REST APIs.
+- Principios de REST:
+1. Escalabilidad: La capacidad de manejar un número creciente de solicitudes de manera eficiente.
+2. Simplicidad: Un diseño claro y sencillo que facilita su comprensión y uso.
+3. Visibilidad: La capacidad de monitorear y entender el flujo de datos a través del sistema.
+4. Portabilidad: La facilidad de trasladar la API a diferentes entornos y sistemas.
+5. Fiabilidad: La capacidad de funcionar consistentemente bajo diferentes condiciones.
+6. Modificabilidad: La facilidad con la que se pueden hacer cambios y mejoras en la API.
+
+- Propósito de las arquitecturas de software
+Todas las arquitecturas de software, incluyendo REST, tienen como objetivo crear sistemas sostenibles y eficientes a lo largo del tiempo. Estas arquitecturas se basan en principios fundamentales que ayudan a simplificar el desarrollo y mantenimiento del software. La idea es construir algo que pueda soportar el paso del tiempo y evolucionar de manera efectiva.
+
+
+Fundamentos de REST
+Para considerar que estamos utilizando REST, debemos tener en cuenta varios principios y fundamentos clave:
+
+1. Recursos
+En una arquitectura REST, todo se considera un recurso. Los recursos pueden ser entidades concretas como usuarios, libros, publicaciones de blog, imágenes, etc., o colecciones de estas entidades como listas de usuarios o listas de libros. Cada recurso se identifica mediante una URL. Todo en REST se trata como un recurso, ya sean entidades concretas o colecciones de entidades.
+
+2. Métodos (Verbos HTTP)
+Los métodos HTTP como GET, POST, PUT, DELETE, PATCH, etc., se utilizan para definir las operaciones que se pueden realizar con los recursos. Estas operaciones corresponden a las acciones básicas de un CRUD (Create, Read, Update, Delete), lo que permite que las aplicaciones interactúen con los recursos de manera estructurada y predecible.
+
+3. Representaciones
+La representación de un recurso puede ser en formato JSON, XML, HTML, etc. El cliente puede decidir en qué formato desea recibir la representación del recurso. Es importante que la representación del recurso esté separada del recurso en sí, permitiendo que el mismo recurso pueda ser representado de diferentes formas según las necesidades del cliente.
+
+4. Stateless (Sin Estado)
+Stateless significa que cada solicitud al servidor debe contener toda la información necesaria para que el servidor la entienda y la procese. El servidor no debe mantener ningún estado sobre el cliente entre solicitudes. Esto no implica que no haya una base de datos u otros mecanismos de almacenamiento, sino que el servidor no debe depender de estados previos para procesar una solicitud.
+
+5. Interfaz Uniforme
+Una interfaz uniforme significa que nuestras URLs deben seguir una convención consistente y predecible. Las mismas URL deben realizar las mismas acciones siempre, facilitando la comprensión y el uso de la API.
+
+6. Separación de Conceptos
+En REST, los componentes del cliente y del servidor están separados. Esto permite que ambos evolucionen de forma independiente, mejorando la flexibilidad y la escalabilidad del sistema.
+
+
+path-to-regexp
+Ejemplo:
+
+app.get("/movies/:id", (req, res) => {
+  const { id } = req.params;
+});
+
+'path-to-regexp' es una biblioteca utilizada por Express y muchas otras bibliotecas. Su función principal es convertir rutas de URL complicadas en expresiones regulares automáticamente, simplificando así el manejo de rutas complejas.
+
+¿Qué hace path-to-regexp?
+Conversión Automática: Convierte rutas definidas en la aplicación, como "/movies/:id", en expresiones regulares que pueden coincidir con las URL de las solicitudes entrantes.
+Simplificación: Permite a los desarrolladores definir rutas de manera sencilla y legible, sin tener que preocuparse por la complejidad de las expresiones regulares.
+Parámetros Dinámicos: Facilita la extracción de parámetros de la ruta, como :id en el ejemplo, que luego pueden ser utilizados dentro del manejador de la solicitud.
+
+ZOD y YUD
+Instalamos ZOD con npm install zod -E
+
+
+Diferencia entre POST, PUT y PATCH
+* Idempotencia
+Idempotencia es la propiedad de realizar una acción determinada varias veces y obtener siempre el mismo resultado que se obtendría al hacerlo una sola vez.
+
+POST
+- Propósito: Crear un nuevo elemento/recurso en el servidor.
+- URL típica: /movies
+- Idempotencia: No es idempotente, porque cada solicitud crea un nuevo recurso, resultando en múltiples recursos si se repite la misma solicitud.
+
+PUT
+- Propósito: Actualizar completamente un elemento/recurso existente o crearlo si no existe.
+- URL típica: /movies/{id}
+- Idempotencia: Es idempotente. Si se pasan los mismos datos, el resultado siempre será el mismo, independientemente de cuántas veces se realice la solicitud.
+
+PATCH
+- Propósito: Actualizar parcialmente un elemento/recurso existente.
+- URL típica: /movies/{id}
+- Idempotencia: Normalmente es idempotente, excepto cuando se actualizan campos que cambian automáticamente, como la fecha y hora de actualización (updatedAt).
+
+
+Servor
+servor es una herramienta para servir páginas web estáticas de manera sencilla.
+
+Comando:
+npx servor ./web/ [ruta]
+
+Descripción:
+- Propósito: Servir páginas web estáticas desde el directorio especificado.
+- Funcionamiento: El comando sirve las páginas web en una URL, permitiendo acceder y ver el contenido desde un navegador.
+
+Ejemplo de Uso:
+npx servor ./web/ --browse
+./web/: Ruta al directorio donde se encuentran los archivos estáticos.
+--browse: (Opcional) Abre automáticamente la URL en el navegador por defecto.
+
+
+CORS (Cross-Origin Resource Sharing)
+¿Qué es CORS?
+CORS es un mecanismo que permite o restringe el uso compartido de recursos entre diferentes orígenes (dominios). Este mecanismo solo funciona en los navegadores y no en los servidores directamente.
+
+Función de CORS
+- Restricción: CORS restringe el acceso a recursos desde un dominio diferente al que sirvió originalmente el recurso.
+- Seguridad: Ayuda a mejorar la seguridad web evitando que scripts maliciosos en una página web accedan a recursos en otro dominio sin permiso.
+
+Cómo funciona
+1. Navegador: Cuando un navegador hace una solicitud a un servidor en un dominio diferente, envía una petición preliminar (preflight) para verificar si el servidor permite el acceso desde el dominio de origen.
+2. Servidor: El servidor debe responder con encabezados CORS adecuados para permitir o denegar la solicitud.
+
+Error común
+- Error de CORS: Si falta el encabezado Access-Control-Allow-Origin, el navegador bloqueará la solicitud y mostrará un error de CORS, como missingAllowOriginHeader.
+
+Solución en el Backend
+Para solucionar el problema de CORS, el servidor debe incluir los encabezados adecuados en las respuestas. Un ejemplo básico para permitir el acceso desde cualquier origen:
+
+javascript
+res.header("Access-Control-Allow-Origin", "*");
+
+Ejemplo de implementación en un endpoint
+javascript
+app.get('/movies', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*"); // Permitir acceso desde cualquier origen
+  res.json(movies);
+});
+
+Consideraciones de seguridad
+Permitir el acceso desde cualquier origen (*) puede no ser seguro para todas las aplicaciones. Es recomendable especificar los dominios permitidos:
+
+javascript
+res.header("Access-Control-Allow-Origin", "http://example.com");

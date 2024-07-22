@@ -1,0 +1,226 @@
+Callbacks en JavaScript
+Los callbacks son funciones que se pasan como argumento a otras funciones y se ejecutan después de que ocurra un evento específico. Son especialmente útiles en operaciones asíncronas, como la lectura de archivos, la realización de solicitudes HTTP, o la interacción con bases de datos.
+
+HTTP
+¿Qué es HTTP?
+HTTP (Hypertext Transfer Protocol) es un protocolo de transferencia de hipertexto. Es uno de los protocolos más utilizados en internet para transmitir información, especialmente en páginas web.
+
+¿Cómo funciona HTTP?
+HTTP funciona de la siguiente manera:
+
+1. Petición (Request):
+- Un usuario hace una petición a través de su navegador web.
+- La petición contiene:
+    * URL: La dirección a la que se está haciendo la petición.
+    * Método de la solicitud: GET, POST, PUT, DELETE, etc.
+    * Headers: Información adicional que proporciona contexto a la petición (como el tipo de contenido que se está enviando o el idioma preferido).
+    * Body: El cuerpo de la petición, donde se envían los datos que queremos transmitir (especialmente en métodos como POST y PUT).
+
+2. Procesamiento en el Servidor:
+- El servidor recibe la petición y procesa la información.
+- Dependiendo de la naturaleza de la petición, el servidor puede:
+    * Acceder a una base de datos.
+    * Procesar datos.
+    * Realizar cálculos.
+- Este procesamiento puede tardar un tiempo variable.
+
+3. Respuesta (Response):
+- Una vez que el servidor ha procesado la petición, devuelve una respuesta al cliente.
+- La respuesta contiene:
+    * Status Code: Indica el resultado de la petición (por ejemplo, 200 OK, 404 Not Found, 500 Internal Server Error).
+    * Headers: Información adicional sobre la respuesta (como el tipo de contenido que se está devolviendo).
+    * Body: El cuerpo de la respuesta, que puede contener datos solicitados, mensajes de error, etc.
+
+Ejemplo de Flujo HTTP
+
+1. Petición del Cliente:
+- URL: https://example.com/api/data
+- Método: GET
+- Headers: Content-Type: application/json, Authorization: Bearer token
+- Body: N/A (en GET normalmente no hay body)
+
+2.Procesamiento del Servidor:
+- El servidor recibe la solicitud y verifica los headers y el método.
+- Consulta la base de datos para obtener los datos solicitados.
+- Procesa los datos si es necesario.
+
+3. Respuesta del Servidor:
+- Status Code: 200 OK
+- Headers: Content-Type: application/json
+- Body: { "data": [ ... ] }
+
+Componentes Clave de una Petición HTTP
+- URL: La dirección del recurso al que se accede.
+- Método: Indica la acción a realizar (GET, POST, PUT, DELETE, etc.).
+- Headers: Información adicional que se envía con la solicitud o la respuesta.
+- Body: Contiene los datos que se están enviando o recibiendo.
+
+Componentes Clave de una Respuesta HTTP
+- Status Code: Código de estado que indica el resultado de la petición.
+- Headers: Información adicional que se envía con la respuesta.
+- Body: Contiene los datos que se devuelven en la respuesta.
+- Estos apuntes proporcionan una explicación clara y estructurada sobre el funcionamiento del protocolo HTTP, incluyendo un ejemplo práctico y descripciones detalladas de los componentes clave.
+
+Históricamente, el protocolo HTTP ha tenido problemas de seguridad, lo que llevó a la creación de HTTPS. HTTPS (Hypertext Transfer Protocol Secure) añade una capa de seguridad mediante el uso de SSL/TLS para cifrar la comunicación entre el cliente y el servidor. Aunque es posible utilizar HTTPS en un entorno localhost, esto requiere una configuración adicional, como la generación e instalación de certificados SSL locales.
+
+Ejecutar scripts en Node.js
+Ejecutar scripts en Node.js es esencial para automatizar tareas, desarrollar aplicaciones y ejecutar código de forma eficiente. las dos opciones principales para ejecutar scripts en un proyecto Node.js:
+
+1. Opción recomendada: Node.js con la bandera --watch
+
+La bandera --watch de Node.js es una herramienta nativa y experimental que permite ejecutar un script y monitorear automáticamente los cambios en el archivo para reiniciarlo cuando se detecte alguna modificación. Esta opción es ideal para el desarrollo iterativo, ya que elimina la necesidad de ejecutar manualmente el script cada vez que se realizan cambios.
+
+Comando para ejecutar con --watch:
+
+Bash
+node --watch [ruta_archivo]
+
+Ejemplo:
+
+Bash
+node --watch .\1.http.js
+
+* Ventajas de usar --watch:
+    - Simplicidad: No requiere instalación de herramientas adicionales.
+    - Eficiencia: Detecta y reinicia el script automáticamente ante cambios.
+    - Integración nativa: Funciona directamente con el ejecutable de Node.js.
+
+* Desventajas de usar --watch:
+    - Experimental: Todavía en desarrollo, por lo que podría presentar algunas inestabilidades.
+    - Menos configuraciones: No ofrece tantas opciones de configuración como herramientas externas.
+
+2. Alternativa robusta: Nodemon
+Nodemon es una herramienta de terceros que ofrece una amplia gama de funciones para ejecutar scripts Node.js de manera eficiente y automatizada. Detecta cambios en los archivos, reinicia el script y proporciona información sobre el proceso.
+
+Instalación de Nodemon:
+
+Bash
+npm install -g nodemon
+
+Ejecución de script con Nodemon:
+
+Bash
+nodemon [ruta_archivo]
+
+Ejemplo:
+
+Bash
+nodemon 1.http.js
+
+Agregar Nodemon al script package.json:
+
+Para mayor comodidad, puedes agregar un script a tu archivo package.json para ejecutar Nodemon con un solo comando:
+
+JSON
+{
+  "scripts": {
+    "dev": "nodemon 1.http.js"
+  }
+}
+
+Ejecución con script package.json:
+
+Bash
+npm run dev
+
+
+* Ventajas de usar Nodemon:
+    - Detección de cambios: Monitorea cambios en archivos JS, JSON y otros.
+    - Reinicio automático: Reinicia el script automáticamente ante cambios.
+    - Configuraciones avanzadas: Permite personalizar opciones de reinicio, logs y más.
+    - Soporte para múltiples archivos: Puede ejecutar scripts con múltiples archivos.
+
+* Desventajas de usar Nodemon:
+    - Complejidad adicional: Requiere instalación y configuración.
+    - Consumo de recursos: Puede consumir un poco más de memoria y CPU que la opción --watch.
+
+* Elección entre --watch y Nodemon:
+    - Para un desarrollo simple y rápido, la bandera --watch de Node.js es una buena opción.
+    - Si necesitas más configuraciones, control y flexibilidad, Nodemon es la herramienta ideal.
+
+* Recomendaciones adicionales:
+    - Independientemente de la opción que elijas, asegúrate de tener tu proyecto Node.js inicializado con npm init.
+    - Utiliza un editor de código con soporte para Hot Reload para una experiencia de desarrollo aún más fluida.
+    - Documenta tus scripts en el archivo package.json para facilitar su comprensión y uso.
+
+* Conclusión:
+Tanto la bandera --watch de Node.js como Nodemon son herramientas valiosas para ejecutar scripts en Node.js. La elección entre ellas depende de tus necesidades específicas y preferencias de desarrollo.
+
+
+Status Code
+Los códigos de estado HTTP son mensajes que un servidor envía a un navegador para indicar si una solicitud se ha completado con éxito o si ha habido un error. Estos códigos son esenciales para la comunicación efectiva entre clientes y servidores web.
+
+Tipos de códigos de estado HTTP:
+
+1. Respuestas informativas (100 - 199):
+    - 100 Continue: Indica que el cliente puede continuar enviando datos.
+    - 101 Switching Protocols: Indica que el servidor está cambiando a un protocolo de comunicación diferente.
+
+2. Respuestas satisfactorias (200 - 299):
+    - 200 OK: La solicitud se ha completado con éxito y se devuelve el recurso solicitado. Este es el código de estado más común.
+    - 201 Created: La solicitud se ha completado con éxito y se ha creado un nuevo recurso.
+    - 202 Accepted: La solicitud se ha aceptado para su procesamiento, pero aún no se ha completado.
+
+3. Redirecciones (300 - 399):
+    - 301 Moved Permanently: El recurso solicitado ha sido movido permanentemente a una nueva ubicación.
+    - 302 Found: El recurso solicitado se ha encontrado temporalmente en una nueva ubicación.
+    - 307 Temporary Redirect: El recurso solicitado ha sido redirigido temporalmente a una nueva ubicación.
+
+4. Errores del cliente (400 - 499):
+    - 400 Bad Request: La solicitud es incorrecta y no se puede procesar.
+    - 401 Unauthorized: El cliente no está autorizado para acceder al recurso solicitado.
+    - 404 Not Found: El recurso solicitado no se ha encontrado.
+    - 405 Method Not Allowed: El método HTTP utilizado en la solicitud no está permitido para el recurso solicitado.
+
+5. Errores del servidor (500 - 599):
+
+    - 500 Internal Server Error: Se ha producido un error interno en el servidor y no se puede procesar la solicitud.
+    - 503 Service Unavailable: El servidor no está disponible temporalmente.
+
+Información adicional:
+- Los códigos de estado HTTP se definen en la RFC 9110 (https://datatracker.ietf.org/doc/html/rfc9110)
+- Puedes encontrar una lista completa de códigos de estado HTTP en MDN Web Docs (https://developer.mozilla.org/es/docs/Web/HTTP/Status)
+- Algunas herramientas de desarrollo web te permiten ver los códigos de estado HTTP de las solicitudes y respuestas.
+
+Ejemplos de uso:
+- Cuando visitas un sitio web y ves un código de estado 200, significa que la página se ha cargado correctamente.
+- Si intentas acceder a una página que no existe, es posible que recibas un código de estado 404, lo que indica que la página no se ha encontrado.
+- Si un servidor se cae, es posible que recibas un código de estado 500, lo que indica que el servidor no está disponible.
+
+Conclusión:
+- Los códigos de estado HTTP son una herramienta importante para comprender la comunicación entre clientes y servidores web. Al comprender los diferentes tipos de códigos de estado, puedes solucionar problemas de forma más eficaz y mejorar tu experiencia web.
+
+
+¿Qué es un buffer?
+Un buffer es una clase global utilizada para trabajar con datos binarios en Node.js. Al leer archivos de manera binaria, estos datos se almacenan temporalmente en un espacio de la memoria física reservado, lo que permite su manipulación.
+Los buffers son especialmente útiles para trabajar con archivos, imágenes, criptografía y cualquier tipo de datos que NO sean cadenas de texto, números planos o JSON. Son esenciales cuando se trabaja con transmisiones de datos, ya que facilitan la lectura de datos desde archivos o la recepción de datos a través de la red.
+
+
+Métodos HTTP:
+- GET: Se utiliza para recuperar datos. Es el método predeterminado cuando se accede a una URL desde un navegador.
+- HEAD: Similar a GET, pero sin el cuerpo de la respuesta. Se utiliza para verificar la disponibilidad de un recurso, por ejemplo, para comprobar permisos, tokens, cookies, etc.
+- POST: Sirve para crear una nueva entidad de un recurso.
+- PUT: Se usa para reemplazar un recurso existente.
+- DELETE: Permite eliminar un recurso específico.
+- OPTIONS: Describe las opciones de comunicación disponibles para un recurso específico. Es fundamental para la gestión de CORS, ya que el navegador utiliza OPTIONS para verificar los métodos permitidos antes de realizar una solicitud a un endpoint.
+- PATCH: Se emplea para modificar parcialmente un recurso.
+
+
+Express
+Express es el framework web más utilizado y versátil en el entorno de Node.js. Permite desarrollar aplicaciones web y APIs de manera eficiente y flexible. Además, Express es la base sobre la cual se construyen muchos otros frameworks, como Next.js.
+
+Instalación
+Para utilizar Express en tu proyecto, primero necesitas instalarlo. Puedes hacerlo con el siguiente comando:
+npm install express -E
+El flag -E asegura que se instale una versión exacta de Express, marcándola como una dependencia de producción.
+
+
+Middleware
+Un middleware es una función que se ejecuta durante el ciclo de vida de una petición HTTP. Actúa como un intermediario que procesa las solicitudes antes de que lleguen al manejador final. Los middlewares pueden realizar una variedad de tareas, como:
+- Extraer cookies.
+- Validar si el usuario está autenticado.
+- Procesar datos del cuerpo de la solicitud en formato JSON.
+- Ejecutar cualquier tipo de lógica necesaria.
+En resumen, un middleware se encarga de realizar operaciones previas en la solicitud para prepararla antes de enviarla al siguiente middleware o manejador de ruta. Después de procesar la solicitud, el middleware debe llamar al método next() para pasar el control al siguiente middleware en la cadena, o al manejador final de la solicitud.
+
+El middleware se ejecuta entre la recepción de la solicitud (request) y el envío de la respuesta (response), permitiendo modificar o utilizar la información de la solicitud en el proceso.

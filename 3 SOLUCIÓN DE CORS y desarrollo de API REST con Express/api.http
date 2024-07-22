@@ -1,0 +1,30 @@
+### recuperar todas las peliculas
+GET http://localhost:1234/movies
+
+### recuperar una pelicula por id
+GET http://localhost:1234/movies/9e6106f0-848b-4810-a11a-3d832a5610f9
+
+### recuperar todas las peliculas por un género
+GET http://localhost:1234/movies?genre=Adventure
+
+### Crear una pelicula
+POST http://localhost:1234/movies
+Content-Type: application/json
+
+{
+  "sql":"Select * from users",
+  "title": "The Godfather",
+  "year": 2025,
+  "director": "Francis Ford Coppola",
+  "duration": 175,
+  "poster": "https://img.fruugo.com/product/4/49/14441494_max.jpg",
+  "genre": ["Crime", "Drama"]
+}
+
+### Actualizar una pelicula 57.50
+PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+Content-Type: application/json
+
+{
+  "year":1994
+}
